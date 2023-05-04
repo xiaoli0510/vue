@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--
+         Object.defineProperty：
+           1.value:设置值；
+           2.enumerable:控制属性是否可枚举，默认是false；
+           3.writable:控制属性是否可改，默认是false；
+           4.configurable:控制属性是否可删除，默认是false；
+           5.get:getter:当读取xx属性时，会触发；
+           6.set:getter:当修改xx属性时，会触发；
+        -->
+    <script>
+        let number = 18;
+        let person = {
+            name: '张三',
+            sex: '男'
+        };
+        Object.defineProperty(person, 'age', {
+            //     value: 19,
+            //     enumerable:true,//控制属性是否可枚举，默认是false
+            //     writable:true,//控制属性是否可改，默认是false
+            //     configurable:true//控制属性是否可删除，默认是false
+            //getter:当读取person.age时，会触发
+            get: function () {
+                return number;
+            },
+            //setter:当修改person.age时，会触发,并能获取到修改的值
+            set: function (value) {
+                number = value;
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>
