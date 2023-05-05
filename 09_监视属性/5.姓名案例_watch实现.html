@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例_watch实现</title>
+</head>
+
+<body>
+    <!--
+        watch和computed区别：
+         1.computed能完成的功能，watch都可以完成；
+         2.watch能完成的功能，computed不一定能完成。因为watch里面能处理异步，computed里面不能处理异步；
+
+         两个重要的小原则：
+         1.Vue管理的函数，不要写箭头函数，这样this指向vm或组件实例对象;
+         2.不被Vue管理的函数(定时器的回调函数、ajax的回调函数、Promise的回调函数)，最好写箭头函数，这样this指向vm或组件实例对象；
+        -->
+    <div id="root">
+        <input type="text" v-model="firstName"> </br></br>
+        <input type="text" v-model="lastName"> </br></br>
+        <div>{{fullName}}</div>
+        <div>{{fullName}}</div>
+        <div>{{fullName}}</div>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止Vue在启动时生成生产提示
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                firstName: '张',
+                lastName: '三',
+                fullName: ''
+            },
+            watch: {
+                firstName(newValue, oldValue) {
+                    //watch可实现异步
+                    setTimeout(() => {
+                        console.log(this)
+                        this.fullName = newValue + this.lastName;
+                    }, 1000)
+                },
+                lastName(newValue, oldValue) {
+                     //watch可实现异步
+                    setTimeout(()=>{
+                        console.log(this)
+                        this.fullName = this.firstName + newValue;
+                    }, 1000)
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

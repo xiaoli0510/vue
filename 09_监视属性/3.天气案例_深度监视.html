@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气案例_深度监视</title>
+</head>
+
+<body>
+    <!--
+
+        -->
+    <div id="root">
+        <p>numbers的值是:{{numbers}}</p>
+        <button @click="add">让numbers改变</button>
+        <p>a的值是:{{numbers.a}}</p>
+        <button @click="addA">让a+1</button>
+        <p>b的值是:{{numbers.b}}</p>
+        <button @click="addB">让b+1</button>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+        Vue.config.productionTip = false;//阻止Vue在启动时生成生产提示
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                numbers: {
+                    a: 1,
+                    b: 2
+                }
+            },
+            methods: {
+                add() {
+                    this.numbers = { a: 111 };
+                },
+                addA() {
+                    this.numbers.a++;
+                },
+                addB() {
+                    this.numbers.b++;
+                }
+            },
+            watch: {
+                numbers: {
+                    immediate: true,//初始化时让handler执行一次
+                    deep: true,//深度监听,不管层级多深，都可以检测到
+                    handler: function (newValue, oldValue) {
+                        console.log('被修改了', newValue, oldValue)
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
