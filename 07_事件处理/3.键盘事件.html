@@ -23,7 +23,7 @@
             右：right
         2.Vue未提供别名的按键，可使用按键原始值去绑定，需使用caps-lock命名；
         3.系统修饰符(用法特殊):ctrl、alt、shift、meta；
-          a.配合keyup使用：按下修饰符的同时，再按下其它键，随后释放其它键，事件才被触发。
+          a.配合keyup使用：按下修饰符的同时，再按下其它键，随后释放其它键，事件才被触发。@keyup.ctrl.y表示按ctrl+y按钮时才会触发；
           b.配合keydown使用：正常触发事件。
         4.使用keyCode去指定具体的按键(不推荐)；
         5.Vue.config.keyCodes自定义键名=键码，自定义按键别名；
@@ -32,6 +32,8 @@
         -->
     <div id="root">
         <input type="text" placeholder="点击enter时触发" @keydown.huiche="keyEvent">
+
+        <input type="text" placeholder="点击ctry+y时触发" @keyup.ctrl.y="keyEvent">
     </div>
     <script type="text/javascript" src="../js/vue.js"></script>
     <script type="text/javascript">
