@@ -49,7 +49,14 @@
                     handler: function (newValue, oldValue) {
                         console.log('被修改了', newValue, oldValue)
                     }
-                }
+                },
+                //深度监听numbers.a的值的变化
+                // 'numbers.a': {
+                //     immediate: true,//初始化时让handler执行一次
+                //     handler: function (newValue, oldValue) {
+                //         console.log('被修改了', newValue, oldValue)
+                //     }
+                // }
             }
         })
     </script>
